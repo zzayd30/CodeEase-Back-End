@@ -19,24 +19,14 @@ app.post("/Register", (req, res) => {
 
 app.post("/LogIn", (req, res) => {
   const { email, password } = req.body;
-  UsersModel.findOne({ email: email } || email === "majo@gmail.com")
+  UsersModel.findOne({ email: email })
     .then((users) => {
-      if (users.password === password || users.password === "majohehe") {
-        if (users.admin === true) {
-          res.json({
-            type: "success",
-            admin: true,
-            username: users.username,
-            message: "Admin Login Success",
-          });
-        } else {
+      if (users.password === password) {
           res.json({
             type: "success",
             username: users.username,
-            admin: false,
-            message: "user Login Success",
+            message: "Login Success",
           });
-        }
       } else {
         res.json({ type: "error", message: "Invalid Password" });
       }
