@@ -5,6 +5,10 @@ const UserSchema = new mongoose.Schema({
   email: String,
   password: String,
   admin: Boolean,
+  isTeam: Boolean,
+  team_type: String,
+  cart: Array,
+  team_orders: Array,
 });
 
 const UsersModel = mongoose.model("Users", UserSchema);
