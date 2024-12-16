@@ -258,8 +258,8 @@ app.put("/updateOrderStatus/:orderId", async (req, res) => {
 
       // Remove the order with the specific orderId
       await UsersModel.updateOne(
-        { email }, // Find the user by email
-        { $pull: { team_orders: { orderId } } } // Remove the order with the matching orderId
+        { email },
+        { $pull: { team_orders: { orderId } } }
       );
     } catch (error) {
       console.log(error);
