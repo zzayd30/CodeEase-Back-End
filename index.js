@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // MongoDB Connection
 mongoose
-  .connect("mongodb://localhost:27017/LogIn", {
+  .connect("mongodb+srv://zaidlatif30:Zaidlatif12345@cluster0.hledrsi.mongodb.net/CodeEase?retryWrites=true&w=majority&appName=Cluster0", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -137,10 +137,12 @@ app.post("/api/add-to-cart", async (req, res) => {
 // Fetch team member's orders
 app.get("/GetTeamMembers", async (req, res) => {
   try {
+    console.log("In get team members");
     const teamMembers = await UsersModel.find(
       { isTeam: true },
       "username email team_type"
     );
+    console.log(teamMembers);
     res.status(teamMembers.length ? 200 : 404).json({
       type: teamMembers.length ? "success" : "error",
       message: teamMembers.length
